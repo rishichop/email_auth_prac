@@ -2,3 +2,4 @@
 env_var.sh
 __pycache__
 env
+instance/site.db

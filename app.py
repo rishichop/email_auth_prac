@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
-from flask_login import LoginManager, UserMixin, login_user
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 from itsdangerous import URLSafeTimedSerializer as Serializer
 
 
@@ -96,7 +96,13 @@ def login():
             print('Login unsuccessful. Check email and password.', 'danger')
     return render_template('login.html')
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
+
 @app.route("/home")
+@login_required
 def home():
     return render_template("home.html")
 
