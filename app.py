@@ -49,7 +49,7 @@ def register():
 
         if User.query.filter_by(email=email).first():
             print('Email address already registered. Please use a different one or log in.', 'danger')
-            return redirect(url_for('register.html'))  
+            return redirect(url_for('login'))  
 
         user = User(email=email, password=hashed_password) 
         db.session.add(user) 
